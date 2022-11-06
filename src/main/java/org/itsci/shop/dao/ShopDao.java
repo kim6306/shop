@@ -6,12 +6,12 @@ import org.itsci.shop.model.Shop;
 import java.util.List;
 
 public interface ShopDao {
+
     List<Shop> getShops();
     void saveShop(Shop shop);
     Shop getShop(int id);
     void deleteShop(int id);
 
-    List<Product> getProductDoesNotHaveShop(int id);
-
+    List<Shop> getShopDoesNotHaveProduct(int id);
 
 }

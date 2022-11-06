@@ -9,27 +9,17 @@
 <body><h1>${title}</h1>
 <div class="container">
   <jsp:include page="/WEB-INF/view/layouts/nav.jsp"/>
-  <input type="button" value="เพิ่มร้านค้า"
-         onclick="window.location.href='${pageContext.request.contextPath}/shop/create'; return false;"class="add-button"/>
   <table>
     <thead>
     <tr>
       <th>รหัสร้านค้า</th>
-      <th>ชื่อร้านค้า</th>
-      <th>เจ้าของ</th>
-      <th>ละติจูด</th>
-      <th>ลองจิจูด</th>
       <th>จำนวนสินค้า</th>
     </tr>
     </thead>
-    <tbody><c:forEach var="shop" items="${shops}">
+    <tbody><c:forEach var="cart" items="${carts}">
       <tr>
-        <td><a href="${pageContext.request.contextPath}/shop/${shop.id}/update">${shop.code}</a></td>
-        <td>${shop.name}</td>
-        <td>${shop.owner}</td>
-        <td>${shop.latitude}</td>
-        <td>${shop.longitude}</td>
-        <td>${fn:length(shop.products)}</td>
+        <td><a href=${pageContext.request.contextPath}/cart/${cart.id}/view-products>${cart.code}</a></td>
+        <td>${fn:length(cart.products)}</td>
       </tr>
     </c:forEach></tbody>
   </table>

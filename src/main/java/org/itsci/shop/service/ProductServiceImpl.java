@@ -8,7 +8,8 @@ import org.itsci.shop.model.Product;
 import org.itsci.shop.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -17,29 +18,15 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 
     @Autowired
-    private CategoryDao categoryDao;
-
-    @Autowired
     private ShopDao shopDao;
 
-    @Override @Transactional
+    @Autowired
+    private CategoryDao categoryDao;
+
+    @Override
+    @Transactional
     public List<Product> getProducts() {
         return productDao.getProducts();
-    }
-
-    @Override
-    @Transactional
-    public List<Shop> getShopDoesNotHaveProduct(int id) {
-        return productDao.getShopDoesNotHaveProduct(id);
-    }
-
-    @Override
-    @Transactional
-    public void addShopToProduct(int productId, int shopId) {
-        Shop shop = shopDao.getShop(shopId);
-        Product product = productDao.getProduct(productId);
-        product.getShops().add(shop);
-        productDao.saveProduct(product);
     }
 
     @Override
@@ -68,6 +55,16 @@ public class ProductServiceImpl implements ProductService {
         productEntity.fill(product);
         saveProduct(productEntity);
     }
+
+    @Override
+    @Transactional
+    public void addShopToProduct(int productId, int shopId) {
+        Shop shop = shopDao.getShop(shopId);
+        Product product = productDao.getProduct(productId);
+        product.getShops().add(shop);
+        productDao.saveProduct(product);
+    }
+
     @Override
     @Transactional
     public void removeShopFromProduct(int productId, int shopId) {
@@ -76,4 +73,11 @@ public class ProductServiceImpl implements ProductService {
         product.getShops().remove(shop);
         productDao.saveProduct(product);
     }
+
+    @Override
+    @Transactional
+    public List<Product> getProductDoesNotHaveShop(int id) {
+        return productDao.getProductDoesNotHaveShop(id);
+    }
+
 }

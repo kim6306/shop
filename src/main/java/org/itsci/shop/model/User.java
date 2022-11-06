@@ -1,17 +1,14 @@
 package org.itsci.shop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class User  extends Login{
-
+public class User extends Login {
     private String firstName;
     private String lastName;
-    @Column(columnDefinition="TEXT")
-    private String address;
+    @Column(columnDefinition = "TEXT")
+    private String address;// Getter/Setter
 
     public String getFirstName() {
         return firstName;

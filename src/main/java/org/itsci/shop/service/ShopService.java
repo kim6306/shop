@@ -6,14 +6,17 @@ import org.itsci.shop.model.Shop;
 import java.util.List;
 
 public interface ShopService {
+
     List<Shop> getShops();
-    List<Product> getProductDoesNotHaveShop(int id);
-    public void saveShop(Shop shop);
+    void saveShop(Shop shop);
+    Shop getShop(int shopId);
+    void deleteShop(int shopId);
+    void updateShop(Shop shopEntity, Shop shop);
 
-    Shop getShop(int ShopId);
-    void deleteShop(int ShopId);
-    void updateShop(Shop ShopEntity, Shop shop);
-    void addProductToShop( int shopId,int productId);
+    void addProductToShop(int shopId, int productId);
 
-    void removeProductFromShop(int productId,int shopId );
+    void removeProductFromShop(int shopId, int productId);
+
+    List<Shop> getShopDoesNotHaveProduct(int id);
+
 }

@@ -3,19 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
-<head>
-    <title>${title}</title>
-    <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet" type="text/css">
+<head><title>${title}</title>
+    <link href="${pageContext.request.contextPath}/assets/css/style.css" rel="stylesheet">
 </head>
-<body>
-<h1>${title}</h1>
+<body><h1>${title}</h1>
 <div class="container">
     <jsp:include page="/WEB-INF/view/layouts/nav.jsp"/>
     <input type="button" value="เพิ่มสินค้า"
-           onclick="window.location.href='${pageContext.request.contextPath}/product/create'; return false;"
-           class="add-button"
-    />
-    <table class="table-bordered">
+           onclick="window.location.href='${pageContext.request.contextPath}/product/create'; return false;"class="add-button"/>
+    <table>
         <thead>
         <tr>
             <th>รหัสสินค้า</th>
@@ -24,19 +20,14 @@
             <th>จํานวนร้านค้า</th>
         </tr>
         </thead>
-        <tbody>
-        <c:forEach var="product" items="${products}">
-            <tr><td>
-                <a href="${pageContext.request.contextPath}/product/${product.id}/update">${product.code}</a></td>
+        <tbody><c:forEach var="product" items="${products}">
+            <tr>
+                <td><a href="${pageContext.request.contextPath}/product/${product.id}/update">${product.code}</a></td>
                 <td>${product.name}</td>
-                <td class="number">
-                    <fmt:formatNumber type="number" pattern="###,###.00"
-                                      value="${product.price}"/>
-                </td>
+                <td class="number"><fmt:formatNumber type="number" pattern="###,###.00" value="${product.price}"/></td>
                 <td class="center">${fn:length(product.shops)}</td>
             </tr>
-        </c:forEach>
-        </tbody>
+        </c:forEach></tbody>
     </table>
 </div>
 <jsp:include page="/WEB-INF/view/layouts/footer.jsp"/>

@@ -1,8 +1,8 @@
 package org.itsci.shop.model;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ManyToAny;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -12,58 +12,39 @@ import java.util.List;
 @Entity
 @Table(name = "products")
 public class Product {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @GenericGenerator(name = "increment", strategy = "increment")
-    int id;
 
     @NotNull
-    @Pattern(regexp="^PD[0-9]{4}")
-    @Column(length = 10, nullable = false, unique = true)
-    @NotNull
-    private String code;
-
-    @NotNull
-    private String name;
-
-    @NotNull
-    private double price;
-
-    @Column(columnDefinition="TEXT")
-    private String description;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "product_shop",
-            joinColumns = { @JoinColumn(name = "product_id") },
-            inverseJoinColumns = { @JoinColumn(name = "shop_id") })
+    @JoinTable(name = "product_shop", joinColumns = {@JoinColumn(name = "product_id")}, inverseJoinColumns = {@JoinColumn(name = "shop_id")})
     private List<Shop> shops;
 
-    public void fill(Product product) {
-        this.code = product.getCode();
-        this.name = product.getName();
-        this.description = product.getDescription();
-    }
 
-    public Category getCategory() {
-        return category;
-    }
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name = "product_cart", joinColumns = {@JoinColumn(name = "product_id")}, inverseJoinColumns = {@JoinColumn(name = "cart_id")})
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Cart> carts;
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
-    public List<Shop> getShops() {
-        return shops;
-    }
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GenericGenerator(name = "increment", strategy = "increment")
+    int id;
 
-    public void setShops(List<Shop> shops) {
-        this.shops = shops;
-    }
+    @NotNull
+    @Pattern(regexp = "^PD[0-9]{3}")
+    @Column(length = 10, nullable = false, unique = true)
+    private String code;
+    @NotNull
+    private String name;
+    @NotNull
+    private double price;
+    @Column(columnDefinition = "TEXT")
+    private String description;// getter/setter
 
     public int getId() {
         return id;
@@ -104,5 +85,35 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-}
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<Shop> getShops() {
+        return shops;
+    }
+
+    public void setShops(List<Shop> shops) {
+        this.shops = shops;
+    }
+
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
+    }
+
+    public void fill(Product product) {
+        this.code = product.getCode();
+        this.name = product.getName();
+        this.category = product.getCategory();
+        this.description = product.getDescription();
+    }
+}

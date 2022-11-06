@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "logins")
+@Table(name="logins")
 public class Login implements UserDetails {
     @Id
     @Column(name = "id", nullable = false)
@@ -24,9 +24,7 @@ public class Login implements UserDetails {
     @Column(columnDefinition = "TINYINT(1)")
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    @JoinTable(name = "login_authority",
-            joinColumns= { @JoinColumn(name = "login_id")},
-            inverseJoinColumns= { @JoinColumn(name = "authority_id")})
+    @JoinTable(name = "login_authority", joinColumns = {@JoinColumn(name = "login_id")}, inverseJoinColumns = {@JoinColumn(name = "authority_id")})
     private Set<Authority> authorities = new HashSet<>();
 
     public long getId() {
@@ -77,15 +75,16 @@ public class Login implements UserDetails {
         this.authorities = authorities;
     }
 
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
+
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
         return true;

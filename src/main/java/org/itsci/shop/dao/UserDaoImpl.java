@@ -1,19 +1,13 @@
-package org.itsci.shop.dao;
-
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
-import org.springframework.beans.factory.annotation.Autowired;
+package org.itsci.shop.dao;import org.hibernate.Session;
+import org.hibernate.SessionFactory;import org.hibernate.query.Query;
+import org.itsci.shop.model.User;import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.itsci.shop.model.User;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
-
 @Repository
-public class UserDaoImpl  implements UserDao{
+public class UserDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
     @Override
@@ -27,14 +21,11 @@ public class UserDaoImpl  implements UserDao{
         List<User> users = query.getResultList();
         return users;
     }
-
     @Override
-    public void saveUser(org.itsci.shop.model.User user) {
+    public void saveUser(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(user);
     }
-
-
     @Override
     public User getUser(Long id) {
         Session session = sessionFactory.getCurrentSession();
@@ -46,7 +37,7 @@ public class UserDaoImpl  implements UserDao{
         Session session = sessionFactory.getCurrentSession();
         User user = session.load(User.class, id);
         session.delete(user);
-        session.flush() ;
+        session.flush();
     }
     @Override
     public User findByUsername(String username) {
@@ -55,9 +46,9 @@ public class UserDaoImpl  implements UserDao{
         CriteriaQuery<User> criteria = builder.createQuery(User.class);
         Root<User> root = criteria.from(User.class);
         criteria.select(root);
-        criteria.where(builder.equal( root.get("username"), username));
+        criteria.where(builder.equal(root.get("username"), username));
         Query<User> query = session.createQuery(criteria);
-        User result = query.uniqueResult();
+        User result = session.createQuery(criteria).uniqueResult();
         return result;
     }
 }

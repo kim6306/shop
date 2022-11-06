@@ -14,15 +14,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = "org.itsci.shop")
 public class WebConfig implements WebMvcConfigurer {
     @Bean
-    public ViewResolver viewResolver(){
-        InternalResourceViewResolver viewResolver = new
-                InternalResourceViewResolver();
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/view/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
+
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/assets/**")
-                .addResourceLocations("/assets/");
+        registry.addResourceHandler("/assets/**").addResourceLocations("/assets/");
     }
 }

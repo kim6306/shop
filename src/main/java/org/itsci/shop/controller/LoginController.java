@@ -1,14 +1,12 @@
 package org.itsci.shop.controller;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
 @Controller
 public class LoginController {
     @GetMapping("/login")
     public String loginPage(Model model) {
-        model.addAttribute("title", "ลงชือเข้าสู่รูะบบ");
+        model.addAttribute("title", "ลงชื่อเข้าสู่ระบบ");
         return "login-page";
     }
     @GetMapping("/access-denied")

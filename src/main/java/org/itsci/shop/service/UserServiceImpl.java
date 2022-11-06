@@ -1,6 +1,5 @@
 package org.itsci.shop.service;
 
-
 import org.itsci.shop.dao.UserDao;
 import org.itsci.shop.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements  UserService , UserDetailsService {
+public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private UserDao userDao;
+
     @Override
     @Transactional
     public List<User> getUsers() {
@@ -28,17 +28,18 @@ public class UserServiceImpl implements  UserService , UserDetailsService {
         userDao.saveUser(user);
     }
 
-
     @Override
     @Transactional
     public User getUser(Long id) {
         return userDao.getUser(id);
     }
+
     @Override
     @Transactional
     public void deleteUser(Long id) {
         userDao.deleteUser(id);
     }
+
     @Override
     @Transactional
     public User findByUsername(String username) {
@@ -47,7 +48,7 @@ public class UserServiceImpl implements  UserService , UserDetailsService {
 
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username)throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return findByUsername(username);
     }
 }

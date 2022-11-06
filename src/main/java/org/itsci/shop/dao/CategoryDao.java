@@ -1,7 +1,5 @@
 package org.itsci.shop.dao;
-
 import org.itsci.shop.model.Category;
-
 import java.util.List;
 
 public interface CategoryDao {
