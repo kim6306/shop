@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
@@ -28,11 +29,9 @@
 </head>
 <body>
 <h1>Spring MVC Hibernate - หน้าหลัก</h1>
-
 <div class="container">
     <jsp:include page="/WEB-INF/view/layouts/nav.jsp"/>
 </div>
-
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
@@ -42,7 +41,7 @@
         <div class="carousel-inner" role="listbox">
 
             <!-- Slide 1 -->
-            <div class="carousel-item active" style="background-image: url(${pageContext.request.contextPath}/assets/img/slide/slide-1.jpg);">
+            <div class="carousel-item active" style="background-image: url(../src/main/webapp/assets/img/slide/slide-1.jpg)">
                 <div class="carousel-container">
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown">บริษัทกำจัด<span>ปลวก</span></h2>
@@ -53,7 +52,7 @@
             </div>
 
             <!-- Slide 2 -->
-            <div class="carousel-item" style="background-image: url(${pageContext.request.contextPath}/assets/img/slide/slide-2.jpg);">
+            <div class="carousel-item" style="background-image: url(../src/main/webapp/assets/img/slide/slide-2.jpg)">
                 <div class="carousel-container">
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown">บริษัทกำจัดปลวก</h2>
@@ -64,7 +63,7 @@
             </div>
 
             <!-- Slide 3 -->
-            <div class="carousel-item" style="background-image: url(${pageContext.request.contextPath}/assets/img/slide/slide-3.jpg);">
+            <div class="carousel-item" style="background-image: url(../src/main/webapp/assets/img/slide/slide-3.jpg)">
                 <div class="carousel-container">
                     <div class="container">
                         <h2 class="animate__animated animate__fadeInDown">บริษัทกำจัดปลวก</h2>
