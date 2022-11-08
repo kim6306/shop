@@ -26,10 +26,6 @@ public class Shop {
     @NotNull
     @Column(name = "owner")
     private String owner;
-    @Column(name = "latitude")
-    private Double latitude;
-    @Column(name = "longitude")
-    private Double longitude;
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
     public int getId() {
@@ -56,18 +52,6 @@ public class Shop {
     public void setOwner(String owner) {
         this.owner = owner;
     }
-    public Double getLatitude() {
-        return latitude;
-    }
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-    public Double getLongitude() {
-        return longitude;
-    }
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
     public String getAddress() {
         return address;
     }
@@ -84,8 +68,6 @@ public class Shop {
         this.code = shop.getCode();
         this.name = shop.getName();
         this.owner = shop.getOwner();
-        this.latitude = shop.getLatitude();
-        this.longitude = shop.getLongitude();
         this.address = shop.getAddress();
     }
 }

@@ -17,8 +17,6 @@
       <th>รหัสร้านค้า</th>
       <th>ชื่อร้านค้า</th>
       <th>เจ้าของ</th>
-      <th>ละติจูด</th>
-      <th>ลองจิจูด</th>
       <th>จำนวนสินค้า</th>
     </tr>
     </thead>
@@ -27,8 +25,6 @@
         <td><a href="${pageContext.request.contextPath}/shop/${shop.id}/update">${shop.code}</a></td>
         <td>${shop.name}</td>
         <td>${shop.owner}</td>
-        <td>${shop.latitude}</td>
-        <td>${shop.longitude}</td>
         <td>${fn:length(shop.products)}</td>
       </tr>
     </c:forEach></tbody>
