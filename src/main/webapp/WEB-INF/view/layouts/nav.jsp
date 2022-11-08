@@ -67,6 +67,9 @@
                         <security:authorize access="hasRole('MANAGER')">
                             <li><a href="${pageContext.request.contextPath}/cart/list">ตะกร้า</a></li>
                         </security:authorize>
+
+                            <li><a href="${pageContext.request.contextPath}/comment/list">ความคิดเห็น</a></li>
+
                         <security:authorize access="!isAuthenticated()">
                             <li><a href="${pageContext.request.contextPath}/login">ลงชื่อเข้าสู่ระบบ</a></li>
                         </security:authorize>
