@@ -43,7 +43,7 @@ public class CartController {
     }
 
     @GetMapping("/{id}/view-products")
-    public String shopViewProduct(@PathVariable("id") int id, Model model) {
+    public String cartViewProduct(@PathVariable("id") int id, Model model) {
         Cart cart = cartService.getCart(id);
         model.addAttribute("title", title + " - รายการสินค้า");
         model.addAttribute("cart", cart);
@@ -52,21 +52,21 @@ public class CartController {
     }
 
     @GetMapping("/{id}/product/add")
-    public String showProductForAdd(@PathVariable("id") int id, Model model) {
+    public String showProductForAddInCart(@PathVariable("id") int id, Model model) {
         Cart cart = cartService.getCart(id);
-        List<Product> products = productService.getProductDoesNotHaveShop(id);
+        List<Product> products = productService.getProductDoesNotHaveCart(id);
         model.addAttribute("title", "เพิ่มสินค้า");
         model.addAttribute("cart", cart);
         model.addAttribute("products", products);
         return "cart/product-list";
     }
     @PostMapping("/{id}/product/add")
-    public String addProduct(@PathVariable("id") int cartId, @RequestParam("product") int productId) {
+    public String addProductInCart(@PathVariable("id") int cartId, @RequestParam("product") int productId) {
         cartService.addProductToCart(cartId , productId);
         return "redirect:/cart/" + cartId+ "/product/add";
     }
     @GetMapping("/{id}/product/{product}/remove")
-    public String shopRemoveProduct(@PathVariable("id") int cartId, @PathVariable("product") int productId) {
+    public String cartRemoveProduct(@PathVariable("id") int cartId, @PathVariable("product") int productId) {
         cartService.removeProductFromCart(cartId , productId);
         return "redirect:/cart/" + cartId + "/view-products";
     }

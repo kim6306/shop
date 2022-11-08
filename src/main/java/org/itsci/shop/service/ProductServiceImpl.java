@@ -80,4 +80,10 @@ public class ProductServiceImpl implements ProductService {
         return productDao.getProductDoesNotHaveShop(id);
     }
 
+    @Override
+    @Transactional
+    public List<Product> getProductDoesNotHaveCart(int id) {
+        return productDao.getProductDoesNotHaveCart(id);
+    }
+
 }

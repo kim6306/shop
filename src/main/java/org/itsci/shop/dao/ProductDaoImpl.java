@@ -46,4 +46,16 @@ public class ProductDaoImpl implements ProductDao {
         productList2.removeAll(productList1);
         return productList2;
     }
+
+    @Override
+    public List<Product> getProductDoesNotHaveCart(int id) {
+        Session session = sessionFactory.getCurrentSession();
+        Query<Product> Cquery = session.createQuery("select c.products from Cart c where c.id=:id");
+        Cquery.setParameter("id", id);
+        List<Product> productList1 = Cquery.getResultList();
+        Cquery = session.createQuery("from Product");
+        List<Product> productList2 = Cquery.getResultList();
+        productList2.removeAll(productList1);
+        return productList2;
+    }
 }

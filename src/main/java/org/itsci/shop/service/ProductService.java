@@ -17,4 +17,5 @@ public interface ProductService {
     void removeShopFromProduct(int productId, int shopId);
 
     List<Product> getProductDoesNotHaveShop(int id);
+    List<Product> getProductDoesNotHaveCart(int id);
 }

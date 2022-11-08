@@ -12,4 +12,5 @@ public interface ProductDao {
     void deleteProduct(int id);
 
     List<Product> getProductDoesNotHaveShop(int id);
+    List<Product> getProductDoesNotHaveCart(int id);
 }

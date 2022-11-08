@@ -16,7 +16,7 @@ rel="stylesheet"></head><body><div id="header"><h1>${title}</h1></div><div class
   </thead>
   <tbody><c:forEach var="product" items="${products}">
     <tr>
-      <td>${product.code}</td>
+      <td class="center"><a href="${pageContext.request.contextPath}/product/${product.id}/update">${product.code}</a></td>
       <td>${product.name}</td>
       <td>${product.price}</td>
       <td class="center"><a href="${pageContext.request.contextPath}/cart/${cart.id}/product/${product.id}/remove">ลบ</a></td>
